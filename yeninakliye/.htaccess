@@ -1,0 +1,27 @@
+RewriteEngine On
+RewriteBase /yeninakliye/
+
+# Admin paneli koruma
+<Files "config/database.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files "config/functions.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Hizmet detay sayfaları
+RewriteRule ^hizmet/([a-z0-9-]+)$ hizmet-detay.php?slug=$1 [L,QSA]
+
+# Blog detay sayfaları
+RewriteRule ^blog/([a-z0-9-]+)$ blog-detay.php?slug=$1 [L,QSA]
+
+# index.php'yi gizle
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L,QSA]
+
+# Güvenlik
+Options -Indexes
