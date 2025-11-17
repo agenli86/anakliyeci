@@ -21,6 +21,10 @@ $stats['blogs'] = $stmt->fetch()['total'];
 $stmt = $db->query("SELECT COUNT(*) as total FROM gallery WHERE is_active = 1");
 $stats['gallery'] = $stmt->fetch()['total'];
 
+// Mesaj istatistikleri
+$stmt = $db->query("SELECT COUNT(*) as unread FROM contact_messages WHERE is_read = 0");
+$stats['unread_messages'] = $stmt->fetch()['unread'];
+
 // Son eklenen hizmetler
 $stmt = $db->query("SELECT * FROM services ORDER BY created_at DESC LIMIT 5");
 $recent_services = $stmt->fetchAll();
@@ -68,6 +72,16 @@ $recent_blogs = $stmt->fetchAll();
         <div class="dashboard-card-content">
             <h3><?php echo $stats['gallery']; ?></h3>
             <p>Galeri Resmi</p>
+        </div>
+    </div>
+
+    <div class="dashboard-card <?php echo $stats['unread_messages'] > 0 ? 'card-red' : 'card-green'; ?>">
+        <div class="dashboard-card-icon">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <div class="dashboard-card-content">
+            <h3><?php echo $stats['unread_messages']; ?></h3>
+            <p>Okunmamış Mesaj</p>
         </div>
     </div>
 </div>
@@ -152,7 +166,7 @@ $recent_blogs = $stmt->fetchAll();
     <h2 style="margin-bottom: 15px; color: #2c3e50;">
         <i class="fas fa-info-circle"></i> Hızlı Erişim
     </h2>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
         <a href="sliders.php" class="btn btn-primary" style="padding: 20px; text-align: center;">
             <i class="fas fa-images" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>
             Slider Ekle
@@ -164,6 +178,10 @@ $recent_blogs = $stmt->fetchAll();
         <a href="blog-edit.php" class="btn btn-warning" style="padding: 20px; text-align: center; color: white;">
             <i class="fas fa-edit" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>
             Blog Ekle
+        </a>
+        <a href="messages.php" class="btn btn-primary" style="padding: 20px; text-align: center; background: <?php echo $stats['unread_messages'] > 0 ? '#dc3545' : '#17a2b8'; ?>;">
+            <i class="fas fa-envelope" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>
+            Mesajlar<?php if ($stats['unread_messages'] > 0): ?><br><small>(<?php echo $stats['unread_messages']; ?> yeni)</small><?php endif; ?>
         </a>
         <a href="settings.php" class="btn btn-primary" style="padding: 20px; text-align: center; background: #6c757d;">
             <i class="fas fa-cog" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>

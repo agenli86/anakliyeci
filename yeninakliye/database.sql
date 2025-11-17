@@ -131,6 +131,17 @@ INSERT INTO sss (question, answer, display_order, is_active) VALUES
 ('Taşıma günü ekip kaçta gelir ve süreç ne kadar sürer?', 'Ekibimiz, anlaşılan gün ve saatte (genellikle sabah 08:00-08:30 arası) tam teçhizatlı olarak adresinizde olur. Standart bir 2+1 veya 3+1 dairenin nakliyat süreci genellikle aynı gün içerisinde tamamlanır.', 3, 1),
 ('Asansörlü nakliyat hizmetinin avantajları nelerdir?', 'Asansörlü nakliyat, özellikle yüksek katlı binalarda taşıma sürecini önemli ölçüde hızlandırır. Eşyaların dar merdiven boşluklarında veya kapılarda hasar görme riskini ortadan kaldırır.', 4, 1);
 
+-- İletişim Mesajları Tablosu
+CREATE TABLE IF NOT EXISTS contact_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20) NULL,
+    message TEXT NOT NULL,
+    is_read TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_turkish_ci;
+
 -- Site Ayarları Tablosu
 CREATE TABLE IF NOT EXISTS settings (
     id INT AUTO_INCREMENT PRIMARY KEY,
