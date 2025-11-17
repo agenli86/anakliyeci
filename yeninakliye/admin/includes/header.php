@@ -326,6 +326,16 @@ checkAdmin();
                 <li><a href="sss.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'sss.php' ? 'active' : ''; ?>">
                     <i class="fas fa-question-circle"></i> SSS
                 </a></li>
+                <li><a href="messages.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'messages.php' ? 'active' : ''; ?>">
+                    <i class="fas fa-envelope"></i> Mesajlar
+                    <?php
+                    $stmt_msg = $db->query("SELECT COUNT(*) as unread FROM contact_messages WHERE is_read = 0");
+                    $unread_count = $stmt_msg->fetch()['unread'];
+                    if ($unread_count > 0):
+                    ?>
+                    <span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 10px; font-size: 11px; margin-left: 5px;"><?php echo $unread_count; ?></span>
+                    <?php endif; ?>
+                </a></li>
                 <li><a href="settings.php" class="<?php echo basename($_SERVER['PHP_SELF']) == 'settings.php' ? 'active' : ''; ?>">
                     <i class="fas fa-cog"></i> Site Ayarları
                 </a></li>

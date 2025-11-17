@@ -373,6 +373,19 @@ $counter_experience = getSetting('counter_experience', '20');
         <section id="contact">
             <div class="container">
                 <h2>Bizimle İletişime Geçin</h2>
+
+                <?php if (isset($_SESSION['contact_success'])): ?>
+                    <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; border-left: 4px solid #28a745;">
+                        <i class="fas fa-check-circle"></i> <?php echo $_SESSION['contact_success']; unset($_SESSION['contact_success']); ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['contact_error'])): ?>
+                    <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; border-left: 4px solid #dc3545;">
+                        <i class="fas fa-exclamation-circle"></i> <?php echo $_SESSION['contact_error']; unset($_SESSION['contact_error']); ?>
+                    </div>
+                <?php endif; ?>
+
                 <form action="contact-form.php" method="POST" class="contact-form">
                     <div class="form-group"><label for="name">Adınız Soyadınız</label><input type="text" id="name" name="name" required></div>
                     <div class="form-group"><label for="email">E-posta Adresiniz</label><input type="email" id="email" name="email" required></div>
