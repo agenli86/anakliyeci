@@ -51,8 +51,8 @@ $google_analytics = getSetting('google_analytics');
     <meta property="og:image" content="<?php echo SITE_URL . '/' . $service['image']; ?>">
     <meta property="og:type" content="article">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="resimler/favicon.png">
-    <link rel="shortcut icon" href="resimler/favicon.png" type="image/png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../resimler/favicon.png">
+    <link rel="shortcut icon" href="../resimler/favicon.png" type="image/png">
 
 <?php if (!empty($google_analytics)): ?>
 <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_analytics; ?>"></script>

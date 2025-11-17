@@ -205,6 +205,25 @@ $counter_experience = getSetting('counter_experience', '20');
             .hamburger { display: block; }
             .hero { height: 400px; }
             .slide-text h2 { font-size: 1.8rem; }
+            /* Mobilde sticky icons ayarları */
+            .sticky-icons-bottom-left { bottom: 15px; left: 15px; gap: 10px; z-index: 9999; }
+            .sticky-icons-bottom-left a { width: 50px; height: 50px; font-size: 24px; }
+            /* Mobilde telefon numarası bölümü */
+            .contact-phone-box {
+                flex-direction: column !important;
+                padding: 20px 15px !important;
+                gap: 10px !important;
+            }
+            .phone-label {
+                font-size: 18px !important;
+                text-align: center;
+            }
+            .phone-button {
+                font-size: 20px !important;
+                padding: 12px 20px !important;
+                width: 100%;
+                max-width: 280px;
+            }
         }
     </style>
 </head>
@@ -354,7 +373,7 @@ $counter_experience = getSetting('counter_experience', '20');
         <section id="contact">
             <div class="container">
                 <h2>Bizimle İletişime Geçin</h2>
-                <form action="#" method="POST" class="contact-form">
+                <form action="contact-form.php" method="POST" class="contact-form">
                     <div class="form-group"><label for="name">Adınız Soyadınız</label><input type="text" id="name" name="name" required></div>
                     <div class="form-group"><label for="email">E-posta Adresiniz</label><input type="email" id="email" name="email" required></div>
                     <div class="form-group"><label for="phone">Telefon Numaranız</label><input type="tel" id="phone" name="phone"></div>
@@ -363,11 +382,11 @@ $counter_experience = getSetting('counter_experience', '20');
                 </form>
 
                 <?php if (!empty($phone2)): ?>
-                <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 8px;">
-                    <span style="font-size: 22px; font-weight: bold; color: #34495e;">
+                <div class="contact-phone-box" style="text-align: center; margin-top: 30px; padding: 20px; background: #f0f0f0; border-radius: 8px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px;">
+                    <span class="phone-label" style="font-size: 22px; font-weight: bold; color: #34495e;">
                         Telefon Numaramız:
                     </span>
-                    <a href="tel:<?php echo $phone2; ?>" style="display: inline-block; padding: 15px 30px; background-color: #34495e; color: #ffffff; font-size: 24px; font-weight: bold; text-decoration: none; border-radius: 8px; margin-left: 15px; transition: all 0.3s ease-in-out;">
+                    <a href="tel:<?php echo $phone2; ?>" class="phone-button" style="display: inline-block; padding: 15px 30px; background-color: #34495e; color: #ffffff; font-size: 24px; font-weight: bold; text-decoration: none; border-radius: 8px; transition: all 0.3s ease-in-out;">
                         <?php echo $phone2; ?>
                     </a>
                 </div>
